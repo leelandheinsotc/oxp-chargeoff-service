@@ -1,0 +1,109 @@
+logging:
+  level:
+    ROOT: INFO
+
+server:
+  port: 29260
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      jdbc:
+        use_streams_for_binary: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 9000000000000000000
+      initialization-fail-timeout: 9000000000000000000
+      maximum-pool-size: 10
+      minimum-idle: 1
+      pool-name: postgres-HikariPool
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  profiles:
+    active: default
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "default"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-matters-sa_adt_db-2Ju4b1"
+  operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "chargeOffMatterInbound-dev"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+dm:
+    noaTemplate: "LGLNOA_CARDS_ENG_SPN.docx"
+    mailDocumentUrl: "http://localhost:29270/letterservice/maildocumentdelayed"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-matters-sa_adt_db-2Ju4b1"
+  operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "chargeOffMatterInbound-dev"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+dm:
+    noaTemplate: "LGLNOA_CARDS_ENG_SPN.docx"
+    mailDocumentUrl: "http://localhost:29270/letterservice/maildocumentdelayed"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "uat"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-matters-sa_adt_db-2Ju4b1"
+  operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "chargeOffMatterInbound-uat"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+dm:
+  noaTemplate: "LGLNOA_CARDS_ENG_SPN.docx"
+  mailDocumentUrl: "http://localhost:29270/letterservice/maildocumentdelayed"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:prod-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:prod-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:prod-maas-db-matters-sa_adt_db-2Ju4b1"
+  operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:prod-maas-db-operations-sa_adt_db-8e9O7w"
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "chargeOffMatterInbound-prod"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+dm:
+  noaTemplate: "LGLNOA_CARDS_ENG_SPN.docx"
+  mailDocumentUrl: "http://localhost:29270/letterservice/maildocumentdelayed"
