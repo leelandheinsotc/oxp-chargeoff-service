@@ -41,7 +41,8 @@ db:
   operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
 SQS:
   queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
-  queueName: "chargeOffMatterInbound-dev"
+  inboundQueueName: "chargeOffMatterInbound-dev"
+  outboundQueueName: "standardOutbound-dev"
   secretName: "oxpEmailDelaySQSSecrets"
   secretRegion: "us-east-1"
 dm:
@@ -61,7 +62,8 @@ db:
   operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
 SQS:
   queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
-  queueName: "chargeOffMatterInbound-dev"
+  inboundQueueName: "chargeOffMatterInbound-dev"
+  outboundQueueName: "standardOutbound-dev"
   secretName: "oxpEmailDelaySQSSecrets"
   secretRegion: "us-east-1"
 dm:
@@ -81,7 +83,8 @@ db:
   operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
 SQS:
   queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
-  queueName: "chargeOffMatterInbound-uat"
+  inboundQueueName: "chargeOffMatterInbound-uat"
+  outboundQueueName: "standardOutbound-uat"
   secretName: "oxpEmailDelaySQSSecrets"
   secretRegion: "us-east-1"
 dm:
@@ -101,7 +104,8 @@ db:
   operationsSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:prod-maas-db-operations-sa_adt_db-8e9O7w"
 SQS:
   queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
-  queueName: "chargeOffMatterInbound-prod"
+  inboundQueueName: "chargeOffMatterInbound-prod"
+  outboundQueueName: "standardOutbound-prod"
   secretName: "oxpEmailDelaySQSSecrets"
   secretRegion: "us-east-1"
 dm:
