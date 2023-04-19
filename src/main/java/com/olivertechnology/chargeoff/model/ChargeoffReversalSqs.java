@@ -15,7 +15,7 @@ import java.util.UUID;
 @Component
 @Data
 @Slf4j
-public class ChargeoffSqs {
+public class ChargeoffReversalSqs {
 
   public String requestID;
   public String chargeOffDate;
@@ -26,13 +26,10 @@ public class ChargeoffSqs {
   static String queueEndPoint;
   static String inboundQueueName;
 
-  public static String chargeoffSqs(String rRequestID, String rMatterUuid, String rChargeOffDate,
-                                    String rChargeOffAmount, String rAccountNumber) {
-    log.info("chargeoffSqs");
+  public static String chargeoffReversalSqs(String rRequestID, String rMatterUuid, String rAccountNumber) {
+    log.info("chargeoffReversalSqs");
     log.info("rRequestID=" + rRequestID);
     log.info("rMatterUuid=" + rMatterUuid);
-    log.info("rChargeOffDate=" + rChargeOffDate);
-    log.info("rChargeOffAmount=" + rChargeOffAmount);
     log.info("rAccountNumber=" + rAccountNumber);
 
     String result = "success";
@@ -51,7 +48,7 @@ public class ChargeoffSqs {
         + "\"envelope\": { "
           + "\"httpMethod\": \"POST\", "
           + "\"customer\": \"wells\", "
-          + "\"eventType\": \"CHARGE_OFF\", "
+          + "\"eventType\": \"CHARGE_OFF_REVERSAL\", "
           + "\"requestID\": \"" + rRequestID + "\", "
           + "\"timestamp\": \"" + timestamp + "\" "
     + "}, "
@@ -61,9 +58,7 @@ public class ChargeoffSqs {
         + "\"eventName\": \"CHARGE_OFF\", "
         + "\"eventDate\": \"" + eventDate + "\", "
         + "\"payload\": { "
-          + "\"matterID\": \"" + rMatterUuid + "\", "
-          + "\"chargeOffDate\": \"" + rChargeOffDate + "\", "
-          + "\"chargeOffAmount\": \"" + rChargeOffAmount + "\" "
+          + "\"matterID\": \"" + rMatterUuid + "\" "
         + "} "
       + "} "
     + "}";
